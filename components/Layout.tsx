@@ -1,4 +1,5 @@
-import { ReactElement, FC, ReactNode } from "react";
+import { CircularProgress } from "@mui/material";
+import { Suspense, FC, ReactNode } from "react";
 import Navbar from "./Navbar";
 
 interface LayoutProps {

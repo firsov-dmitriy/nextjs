@@ -17,8 +17,15 @@ interface CardProps {
 const CardLayut: FC<CardProps> = ({ user, post }) => {
   const router = useRouter();
   return (
-    <Box sx={{ width: user ? "32%" : "45%", margin: 1 }}>
+    <Box
+      sx={{
+        width: user ? "32%" : "45%",
+        margin: 1,
+        cursor: post && "pointer",
+      }}
+    >
       <Card
+        sx={{ minHeight: "250px" }}
         variant="outlined"
         onClick={() => post && router.push(`/post/${post?.id}`)}
       >
