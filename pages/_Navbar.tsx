@@ -67,6 +67,11 @@ const Navbar = () => {
                 User
               </Button>
             </Link>
+            <Link href={"/post"}>
+              <Button color="inherit" variant="text">
+                Post
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>

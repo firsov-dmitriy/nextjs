@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { fetchAllUsers } from "../service/UserService";
 import { IUser } from "../types/User";
-import CardUser from "./_card";
-import card from "./_card";
 import Navbar from "./_Navbar";
 import { Box } from "@mui/material";
+import CardLayut from "./_card";
 
 const user = () => {
   const [users, setUser] = useState<IUser[]>([]);
@@ -24,7 +23,7 @@ const user = () => {
       <Navbar />
       <Box sx={style.box}>
         {users.map((user) => (
-          <CardUser key={user.id} user={user} />
+          <CardLayut key={user.id} user={user} />
         ))}
       </Box>
     </>

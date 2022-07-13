@@ -6,30 +6,38 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { IUser } from "../types/User";
 import { FC } from "react";
+import { IPost } from "../types/Post";
 
 interface CardProps {
-  user: IUser;
+  user?: IUser;
+  post?: IPost;
 }
 
-const CardUser: FC<CardProps> = ({ user: { name, username, id, email } }) => {
+const CardLayut: FC<CardProps> = ({ user, post }) => {
   return (
-    <Box sx={{ width: "32%", margin: 1 }}>
+    <Box sx={{ width: user ? "32%" : "45%", margin: 1 }}>
       <Card variant="outlined">
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Name: {name}
+            {user && `ID: ${user?.id}`}
+            {post && `ID: ${post?.id}`}
           </Typography>
+
           <Typography variant="h5" component="div">
-            UserName: {username}
+            {user && `Name: ${user?.name}`}
+            {post && `Title: ${post?.title}`}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Email: {email}
+            {user && `UserName: ${user?.username}`}
+            {post && `Body: ${post?.body}`}
           </Typography>
-          <Typography variant="body2">ID: {id}</Typography>
+          {user && (
+            <Typography variant="body2">Email: {user?.email}</Typography>
+          )}
         </CardContent>
       </Card>
     </Box>
   );
 };
 
-export default CardUser;
+export default CardLayut;
