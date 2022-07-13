@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { FC } from "react";
 import PostService from "../service/PostService";
 import { IPost } from "../types/Post";
-import Navbar from "./_Navbar";
 import { Box, Stack } from "@mui/material";
-import CardLayut from "./_card";
+import CardLayut from "../components/CardLayout";
+import Layout from "../components/Layout";
 
 const style = {
   box: {
@@ -13,21 +13,26 @@ const style = {
     flexWrap: "wrap",
   },
 };
-const post = () => {
-  const [posts, setPosts] = useState<IPost[]>([]);
-  useEffect(() => {
-    PostService.fetchAllPost().then((posts) => setPosts(posts));
-  }, []);
+interface postProps {
+  posts: IPost[];
+}
+const post: FC<postProps> = ({ posts }) => {
   return (
-    <>
-      <Navbar />
+    <Layout>
       <Box sx={style.box}>
         {posts.map((post) => (
-          <CardLayut post={post} />
+          <CardLayut key={post.id} post={post} />
         ))}
       </Box>
-    </>
+    </Layout>
   );
 };
 
 export default post;
+
+export async function getStaticProps() {
+  const posts = await PostService.fetchAllPost();
+  return {
+    props: { posts },
+  };
+}

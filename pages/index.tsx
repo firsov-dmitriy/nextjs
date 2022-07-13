@@ -1,14 +1,13 @@
-import Navbar from "./_Navbar";
-import CssBaseline from "@mui/material/CssBaseline";
+import type { NextPageWithLayout } from "./_app";
+import Layout from "../components/Layout";
+import { ReactElement } from "react";
 
-const Index = () => {
-  return (
-    <>
-      <CssBaseline />
-      <Navbar />
-      Hello Word
-    </>
-  );
+const Page: NextPageWithLayout = () => {
+  return <p>hello world</p>;
 };
 
-export default Index;
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
+
+export default Page;
