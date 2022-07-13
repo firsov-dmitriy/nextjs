@@ -1,9 +1,9 @@
 import { FC } from "react";
-import PostService from "../service/PostService";
-import { IPost } from "../types/Post";
+import PostService from "../../service/PostService";
+import { IPost } from "../../types/Post";
 import { Box, Stack } from "@mui/material";
-import CardLayut from "../components/CardLayout";
-import Layout from "../components/Layout";
+import CardLayut from "../../components/CardLayout";
+import Layout from "../../components/Layout";
 
 const style = {
   box: {
@@ -16,7 +16,7 @@ const style = {
 interface postProps {
   posts: IPost[];
 }
-const post: FC<postProps> = ({ posts }) => {
+const Index: FC<postProps> = ({ posts }) => {
   return (
     <Layout>
       <Box sx={style.box}>
@@ -28,7 +28,7 @@ const post: FC<postProps> = ({ posts }) => {
   );
 };
 
-export default post;
+export default Index;
 
 export async function getStaticProps() {
   const posts = await PostService.fetchAllPost();

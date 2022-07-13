@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { IUser } from "../types/User";
 import { FC } from "react";
 import { IPost } from "../types/Post";
+import { useRouter } from "next/router";
 
 interface CardProps {
   user?: IUser;
@@ -14,9 +15,13 @@ interface CardProps {
 }
 
 const CardLayut: FC<CardProps> = ({ user, post }) => {
+  const router = useRouter();
   return (
     <Box sx={{ width: user ? "32%" : "45%", margin: 1 }}>
-      <Card variant="outlined">
+      <Card
+        variant="outlined"
+        onClick={() => post && router.push(`/post/${post?.id}`)}
+      >
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {user && `ID: ${user?.id}`}
